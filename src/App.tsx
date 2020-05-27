@@ -13,7 +13,7 @@ export default () => {
   }
   return (
     <div>
-      <Home name="This is from a prop" />
+      <Home name="This is from a prop !" />
       <br/>
       current route: {route}
       <br/>

@@ -11,6 +11,8 @@ app.use(express.static('./build', {
   index: false,
 }));
 
+app.use('/entry.js', express.static('./server-build/entry.js'));
+
 app.get('*', async (req, res) => {
   const globalState = req.url?.includes('nofetch')
     ? "no fetch"
