@@ -2,7 +2,7 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
 const serverConfig = {
-  entry: './server/index.ts',
+  entry: './server/server.ts',
 
   target: 'node',
 
@@ -10,7 +10,7 @@ const serverConfig = {
 
   output: {
     path: path.resolve('server-build'),
-    filename: 'index.js',
+    filename: 'server.js',
 
     // Bundle absolute resource paths in the source-map,
     // so VSCode can match the source file.
@@ -39,13 +39,13 @@ const serverConfig = {
 };
 
 const clientConfig = {
-  entry: './server/entry.ts',
+  entry: './server/hydrate.ts',
 
   target: 'web',
 
   output: {
     path: path.resolve('server-build'),
-    filename: 'entry.js',
+    filename: 'hydrate.js',
 
     // Bundle absolute resource paths in the source-map,
     // so VSCode can match the source file.

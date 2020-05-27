@@ -16,7 +16,7 @@
       "type": "node",
       "request": "launch",
       "cwd": "${workspaceRoot}",
-      "program": "${workspaceRoot}/server/index.ts",
+      "program": "${workspaceRoot}/server/server.ts",
       "outFiles": [
         "${workspaceRoot}/server-build/**/*.js"
       ],

@@ -11,7 +11,7 @@ app.use(express.static('./build', {
   index: false,
 }));
 
-app.use('/entry.js', express.static('./server-build/entry.js'));
+app.use('/hydrate.js', express.static('./server-build/hydrate.js'));
 
 app.get('*', async (req, res) => {
   const globalState = req.url?.includes('nofetch')
