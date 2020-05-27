@@ -18,9 +18,13 @@
     "isolatedModules": true,
     "outDir": "./dist/",
     "jsx": "react",
-    "noEmit": true
+
+
+    "noEmit": false,
+    "sourceMap": true
   },
   "include": [
-    "src"
+    "src",
+    "server"
   ]
 }
