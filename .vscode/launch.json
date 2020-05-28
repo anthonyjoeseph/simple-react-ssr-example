@@ -7,12 +7,20 @@
     {
       "type": "chrome",
       "request": "launch",
-      "name": "Debug Client-Side Render",
+      "name": "Debug Create React App",
       "url": "http://localhost:3000",
       "webRoot": "${workspaceFolder}"
     },
     {
-      "name": "Debug Server-Side Render",
+      "type": "chrome",
+      "request": "launch",
+      "name": "Debug SSR Client",
+      "url": "http://localhost:3006",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true
+    },
+    {
+      "name": "Debug SSR Server",
       "type": "node",
       "request": "launch",
       "cwd": "${workspaceRoot}",

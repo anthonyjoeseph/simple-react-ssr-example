@@ -6,11 +6,12 @@ export default () => {
   const data = nodeSafeWindow.__INITIAL__DATA__
   const [route, setRoute] = React.useState<string>(nodeSafeWindow.location.href);
   const [clientData, setClientData] = React.useState<string>('nothing fetched yet');
-  console.log('poppin');
-  nodeSafeWindow.onpopstate = () => {
-    console.log('poppin');
-    setRoute(nodeSafeWindow.location.href);
-  }
+  React.useEffect(() => {
+    nodeSafeWindow.addEventListener('popstate', () => {
+      console.log('poppin');
+      setRoute(nodeSafeWindow.location.href);
+    })
+  }, []);
   return (
     <div>
       <Home name="This is from a prop !" />
@@ -38,9 +39,13 @@ export default () => {
       <br />
       <button
         onClick={() => {
-          fetch('https://jsonplaceholder.typicode.com/todos/2')
-            .then(resp => resp.text())
-            .then(setClientData);
+          fetch('http://jsonplaceholder.typicode.com/posts/1')
+            .then(resp => {
+              return resp.text()
+            })
+            .then((newClientData) => {
+              setClientData(newClientData);
+            });
         }}
       >
         fetch from client

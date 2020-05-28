@@ -1,13 +1,22 @@
 const safeWindow = {
   __INITIAL__DATA__: '',
   ...(typeof window !== 'undefined'
-  ? window
+  ? {
+    ...window,
+    addEventListener: <K extends keyof WindowEventMap>(
+      type: K,
+      listener: (this: Window, ev: WindowEventMap[K]) => any,
+      options?: boolean | AddEventListenerOptions) => {
+        // addEventListener is bound to 'window' strangely,
+        // must be invoked in this way
+        window.addEventListener(type, listener, options);
+      },
+  }
   : {
     addEventListener: <K extends keyof WindowEventMap>(
       type: K,
       listener: (this: Window, ev: WindowEventMap[K]) => any,
       options?: boolean | AddEventListenerOptions) => {},
-    onpopstate: (_this: WindowEventHandlers, ev: PopStateEvent) => {},
     location: {
       href: '',
       host: '',
