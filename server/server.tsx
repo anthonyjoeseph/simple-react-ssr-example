@@ -7,7 +7,7 @@ import generateClient from './GenerateClient';
 const PORT = process.env.PORT || 3006;
 const app = express();
 
-app.use(express.static('./build', {
+app.use(express.static('./public', {
   index: false,
 }));
 
