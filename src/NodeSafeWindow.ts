@@ -21,6 +21,7 @@ const safeWindow = {
       href: '',
       host: '',
       protocol: '',
+      pathname: '',
     },
     history: {
       pushState: (data: any, title: string, url?: string | null) => {},

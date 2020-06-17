@@ -2,7 +2,7 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
 const serverConfig = {
-  entry: './server/server.ts',
+  entry: './server/server.tsx',
 
   target: 'node',
 
@@ -39,7 +39,7 @@ const serverConfig = {
 };
 
 const clientConfig = {
-  entry: './server/hydrate.ts',
+  entry: './server/hydrate.tsx',
 
   target: 'web',
 

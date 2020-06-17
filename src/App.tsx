@@ -1,15 +1,19 @@
 import React from 'react';
 import Home from './Home';
-import nodeSafeWindow from './NodeSafeWindow';
+import window from './NodeSafeWindow';
 
-export default () => {
-  const data = nodeSafeWindow.__INITIAL__DATA__
-  const [route, setRoute] = React.useState<string>(nodeSafeWindow.location.href);
+export default ({
+  initialUrl,
+}: {
+  initialUrl: string;
+}) => {
+  const data = window.__INITIAL__DATA__
+  const [route, setRoute] = React.useState<string>(initialUrl);
   const [clientData, setClientData] = React.useState<string>('nothing fetched yet');
   React.useEffect(() => {
-    nodeSafeWindow.addEventListener('popstate', () => {
+    window.addEventListener('popstate', () => {
       console.log('poppin');
-      setRoute(nodeSafeWindow.location.href);
+      setRoute(window.location.pathname);
     })
   }, []);
   return (
@@ -20,8 +24,8 @@ export default () => {
       <br/>
       <button
         onClick={() => {
-          setRoute(`${window.location.protocol}//${window.location.host}/nofetch`);
-          nodeSafeWindow.history.pushState(null, '', '/nofetch')
+          setRoute(`/nofetch`);
+          window.history.pushState(null, '', '/nofetch')
         }}
       >
         client reroute
@@ -29,7 +33,7 @@ export default () => {
       <br/>
       <button
         onClick={() => {
-          nodeSafeWindow.location.href = '/nofetch'
+          window.location.href = '/nofetch'
         }}
       >
         server reroute
@@ -39,7 +43,7 @@ export default () => {
       <br />
       <button
         onClick={() => {
-          fetch('http://jsonplaceholder.typicode.com/posts/1')
+          fetch('https://reqres.in/api/users?page=2')
             .then(resp => {
               return resp.text()
             })

@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import express from 'express';
-
+import React from 'react';
 import App from '../src/App';
 import generateClient from './GenerateClient';
 
@@ -11,16 +11,21 @@ app.use(express.static('./build', {
   index: false,
 }));
 
-app.use('/server-build/hydrate.js', express.static('./server-build/hydrate.js'));
+app.use('/server-build', express.static('./server-build'));
 
 app.get('*', async (req, res) => {
   const globalState = req.url?.includes('nofetch')
     ? "no fetch"
-    : await fetch('https://jsonplaceholder.typicode.com/todos/1')
+    : await fetch('https://reqres.in/api/users?page=2')
         .then(resp => resp.text())
         .then(text => `fetched: ${text}`);
   try {
-    const clientString = await generateClient(App, globalState)
+    const clientString = await generateClient(
+      <App
+        initialUrl={req.url}
+      />,
+      globalState,
+    )
     return res.send(clientString);
   } catch (untypedErr) {
     const err: NodeJS.ErrnoException = untypedErr;
